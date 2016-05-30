@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>MyCV_1312124</title>
+    <script language="javascript" src="js/angular.min.js"></script>
+    <script language="javascript" src="js/script.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src = "js/angularfire.min.js"></script>
+    <script src = "js/firebase.js"></script>
+    <link href="css/xeditable.css" rel="stylesheet">
+    <script src="js/xeditable.js"></script>
+</head>
+<body style="background-color: #c0c0c0">
+    <div ng-app="MyCV" class="container"style="width: 960px; margin: 50px auto; background-color: white">
+        <div   ng-controller="Controller" >
+            <div ng-hide="login" style="margin-top:100px;">
+                <center><label style="font-size:20px;">User Login YourCV</label></center>
+                <center><input type="button" style="width:300px;margin-top:20px;" class="btn btn-lg btn-primary btn-block" value="Login with Google" ng-click="Login()"></center>
+
+            </div>
+            <div ng-show="login">
+                <div class="row">
+                    <input type="button" style="width:100px;margin-top:10px;" class="btn btn-lg btn-primary btn-block col-md-1 col-md-offset-10" value="Log out" ng-click="Logout()">
+                </div>
+
+            <div class="col-sm-12" id="profile">
+                <div class="col-sm-4" ng-repeat="i in data.images">
+                    <img src="{{i.avatar}}" style="width:250px;height:250px; margin-left: 40px;margin-top:40px;">
+                </div>
+                <div class="col-sm-8">
+                    <div ng-repeat="x in data.profile" style=" margin-left: 10px;margin-top:40px ">
+                        <a style="margin-top:20px;font-size: 20px;font-weight: bold;" editable-text="x.name">{{x.name || "empty" }}</a>
+                        <br/>
+                        <a style="font-size: 15px;" editable-text="x.position">{{x.position || "empty"}}</a>
+                        <br/>
+                       <span> Major:</span> <a  editable-text = "x.major" > {{x.major || "empty"}}</a>
+                        <br/>
+                        <span> Email:</span><a editable-text = "x.email"> {{x.email || "empty"}}</a>
+                        <br/>
+                        <span> Phone:</span><a editable-text = "x.phone"> {{x.phone || "empty"}}</a>
+                        <br/>
+                        <span> Nationality:</span><a style="font-size: 15px;" editable-text = "x.country"> {{x.country || "empty"}}</a>
+                        <br/><br/>
+                        <button style="margin-left: 20px;display: inline;border-radius:10px;width: 200px;height: 50px;background-color:#337ab7;">Send to email</button>
+
+                    </div>
+
+                </div>
+                <br/>
+                <br/>
+                <div style="background-color: #c0c0c0; width: 100%; height: 20px;margin-top: 300px;"></div>
+
+            </div>
+
+
+                
+            <div class="col-sm-12" style="margin-top: 20px;">
+                <label style="background-color: #000000;color:#ffffff;width: 150px; height: 50px;padding: 15px;padding-right: 15px;">Background</label>
+                <div style="margin-top: 10px;" class="col-sm-12"id="summary" style="border-bottom: 1px solid #c0c0c0; ">
+                    <div ng-repeat="i in data.images"style="display: inline;">
+                        <img src="{{i.summary}}"style="display: inline; width: 30px;height: 30px;margin-left: 20px;"/>
+                        <p style="display: inline; font-size: 20px;">Summary</p>
+                    </div>
+                    <form ng-show="visiblesummary">
+                        <label>Information:</label>
+                        <input type="text" ng-model="summary" placeholder="INFORMATION" ng-required/>
+                        <input  type="button"  value="Save" ng-click="AddSummary()">
+                    </form>
+                    <div ng-hide="visiblesummary">
+
+                            </span><button style="margin-left:650px;width:50px;height:30px;" ng-click="visiblesummary=true">Add</button> </br></br>
+                    <div ng-repeat="y in data.summary"style="margin-left: 30px; margin-top: 10px;">
+                        <a editable-text = "y.summary"> {{y.summary || "empty"}}</a>
+                        <br/>
+
+                    </div>
+                    </div>
+                    <br/>
+                    <div style="background-color: #c0c0c0;width: 100px;height: 1px;"/>
+                </div>
+                <hr>
+                <div class="col-sm-12" id="experience" style="border-bottom: 1px solid #c0c0c0; ">
+                    <br/><br/>
+
+                    <div ng-repeat="i in data.images"style="display: inline;">
+                        <img src="{{i.experience}}"style="display: inline; width: 30px;height: 30px;margin-left: 20px;"/>
+                        <p style="display: inline; font-size: 20px;">Experience</p>
+                    </div>
+                    <form ng-show="visibleexperience">
+                        <label>Information:</label>
+                        <input type="text" ng-model="experience" placeholder="INFORMATION" ng-required/>
+                        <input  type="button"  value="Save" ng-click="AddExperience()">
+                    </form>
+                    <div ng-hide="visibleexperience">
+
+                        </span><button style="margin-left:635px;width:50px;height:30px;" ng-click="visibleexperience=true">Add</button> </br></br>
+                    <div ng-repeat="ex in data.experience">
+                        <a style="margin-left: 30px;margin-top: 20px;" editable-text = " ex.experience ">{{ex.experience || "empty"}}</a>
+                        <br/>
+                    </div>
+                    </div>
+                    <br/><br/>
+
+                </div>
+
+
+                <hr>
+                <div class="col-sm-12" id="project"style="border-bottom: 1px solid #c0c0c0; ">
+                    <br/><br/>
+                    <div ng-repeat="i in data.images"style="display: inline;"   >
+                        <img src="{{i.project}}"style="display: inline; width: 30px;height: 30px;margin-left: 20px;"/>
+                        <p style="display: inline; font-size: 20px;">Project</p>
+                    </div>
+                    <form ng-show="visibleproject">
+                        <label>Information:</label>
+                        <input type="text" ng-model="project" placeholder="INFORMATION" ng-required/>
+                        <input  type="button"  value="Save" ng-click="AddProject()">
+                    </form>
+                    <div ng-hide="visibleproject">
+
+                        </span><button style="margin-left:635px;width:50px;height:30px;" ng-click="visibleproject=true">Add</button> </br></br>
+                        <div ng-repeat="p in data.project" style="margin-top: 10px;">
+                        <a editable-text = " p.project ">{{p.project || "empty"}}</a>
+                        <br/>
+                    </div>
+
+                    <br/><br/>
+                </div>
+                <hr>
+                <div class="col-sm-12" id="language"style="border-bottom: 1px solid #c0c0c0; ">
+                    <br/><br/>
+                    <div ng-repeat="i in data.images"style="display: inline;">
+                        <img src="{{i.language}}"style="display: inline; width: 30px;height: 30px;margin-left: 20px;"/>
+                        <p style="display: inline; font-size: 20px;">Language</p>
+                    </div>
+                    <form ng-show="visiblelanguage">
+                        <label>Information:</label>
+                        <input type="text" ng-model="language" placeholder="INFORMATION" ng-required/>
+                        <input  type="button"  value="Save" ng-click="AddLanguage()">
+                    </form>
+                    <div ng-hide="visiblelanguage">
+
+                        </span><button style="margin-left:620px;width:50px;height:30px;" ng-click="visiblelanguage=true">Add</button> </br></br>
+                        <div ng-repeat="a in data.language" style="margin-left:20px;margin-top: 20px;">
+                        <a style="display: inline;margin-top: 20px;" editable-text = " a.language ">{{a.language || "empty"}}</a>
+                        <br/>
+                    </div>
+                    <br/><br/>
+                </div>
+                <hr>
+                <div class="col-sm-12" id="skill"style="border-bottom: 1px solid #c0c0c0; ">
+                    <br/><br/>
+                    <div ng-repeat="i in data.images" style="display: inline;">
+                        <img src="{{i.skill}}"style="display: inline; width: 30px;height: 30px;margin-left: 20px;"/>
+                        <p style="display: inline; font-size: 20px;">Skill</p>
+                        <p style="margin-top: 20px;margin-left: 30px;">Top skill</p>
+                    </div>
+                    <form ng-show="visibleskill">
+                        <label>Information:</label>
+                        <input type="text" ng-model="skill" placeholder="INFORMATION" ng-required/>
+                        <input  type="button"  value="Save" ng-click="AddSkill()">
+                    </form>
+                    <div ng-hide="visibleskill">
+                        </span><button style="margin-left:600px;width:50px;height:30px;" ng-click="visibleskill=true">Add</button> </br></br>
+                    <ul ng-repeat="s in data.skill" style="margin-top: 10px;">
+                        <a editable-text = " s.skill" >{{s.skill || "empty"}}</a>
+                        <br/>
+                    </ul>
+
+                    </div>
+                    <br/><br/>
+                </div>
+                <div class="col-sm-12" id="education"style="border-bottom: 1px solid #c0c0c0; ">
+                    <br/><br/>
+                    <div ng-repeat="i in data.images"style="display: inline;">
+                        <img src="{{i.education}}"style="display: inline; width: 30px;height: 30px;margin-left: 20px;"/>
+                        <p style="display: inline; font-size: 20px;">Education</p>
+                    </div>
+                    <form ng-show="visibleeducation">
+                        <label>Information:</label>
+                        <input type="text" ng-model="education" placeholder="INFORMATION" ng-required/>
+                        <input  type="button"  value="Save" ng-click="AddEducation()">
+                    </form>
+                    <div ng-hide="visibleeducation">
+
+                        </span><button style="margin-left:600px;width:50px;height:30px;" ng-click="visibleeducation=true">Add</button> </br></br>
+                    <ul ng-repeat="e in data.education" style="margin-top: 10px;">
+                        <a editable-text = "e.education" >{{e.education || "empty"}}</a>
+
+                    </ul>
+
+                    <br/><br/>
+                </div>
+                </div>
+                <hr>
+
+            </div>
+
+                </div>
+                </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "profile": [
+    {
+      "name":"Quốc Đạt Nguyễn",
+      "position":"Student at University of Science Ho Chi Minh City",
+      "country" :"Vietnam   ",
+      "major":"Software Engineering",
+      "email":"nguyenquocdat3@gmail.com",
+      "phone":"+841674060823"
+    }
+  ],
+  "summary":[
+    {"summary":"- Learned the basics of programming and improve"},
+    {"summary":"- Keen to learn new technologies."},
+    {"summary":"- Keen to read technology books"},
+    {"summary":"- Like to discover new things"},
+    {"summary":"* Familiar with  array of programming languages and concepts, including:"},
+    {"summary":"  + Programming langues: C/C++,C# .NET"},
+    {"summary":"  + Object Oriented programming "},
+    {"summary":"  + Design software"},
+    {"summary":"  + Database: MS SQL Server."},
+    {"summary":" + Web: Javascript, CSS, ASP.NET, HTML "}
+  ],
+  "experience":[
+    {"experience":"- Graduation next year."},
+    {"experience":"- I have not worked in any other company."},
+    {"experience":"- I don't have much experience in work."}
+  ],
+  "project":[
+    {"project":"- Simple chess with c ++."},
+    {"project":"- Paint application with WPF."},
+    {"project":"- Caro games online Gomoku."},
+    {"project":"- Others..."}
+  ],
+
+  "language":[
+    {"language": "+ Vietnamese"},
+    {"language": "+ English"}
+  ],
+
+  "skill":[
+    {"skill":"- Programing language: C, C++, C#, Java, HTML CSS"},
+    {"skill":"- Teamwork, softskills, English"}
+  ],
+  "education":[
+    {"education":"- University of Science, Ho Chi Minh City"}
+  ],
+  "images":[
+    {
+      "avatar":"images/avatar.jpg",
+      "summary":"images/summary.jpg",
+      "experience":"images/experience.jpg",
+      "project":"images/project.jpg",
+      "skill":"images/skill.jpg",
+      "language":"images/language.jpg",
+      "education":"images/education.jpg"
+
+    }
+  ]
+
+}
